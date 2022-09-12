@@ -2,6 +2,7 @@ name: Docker Baseimage CI/CD
 
 env:
   DOCKER_IMAGE_NAME: turygo/baseimage-gui
+  SEGMENT_DOWNLOAD_TIMEOUT_MIN: 120
 
 on:
   push:
