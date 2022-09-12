@@ -1,7 +1,7 @@
 name: Docker Baseimage CI/CD
 
 env:
-  DOCKER_IMAGE_NAME: jlesage/baseimage-gui
+  DOCKER_IMAGE_NAME: turygo/baseimage-gui
 
 on:
   push:
@@ -215,16 +215,16 @@ jobs:
           repository: ${{ env.DOCKER_IMAGE_NAME }}
           readme-filepath: README.md
 
-  notification:
-    name: Notification
-    needs: [ pre-build, build, post-build ]
-    runs-on: ubuntu-20.04
-    if: ${{ always() }}
+  # notification:
+  #   name: Notification
+  #   needs: [ pre-build, build, post-build ]
+  #   runs-on: ubuntu-20.04
+  #   if: ${{ always() }}
 
-    steps:
-      - name: Pushover notification
-        uses: desiderati/github-action-pushover@v1
-        with:
-          job-status: ${{ needs.build.result }}
-          pushover-api-token: ${{ secrets.PUSHOVER_API_TOKEN }}
-          pushover-user-key: ${{ secrets.PUSHOVER_USER_KEY }}
+  #   steps:
+  #     - name: Pushover notification
+  #       uses: desiderati/github-action-pushover@v1
+  #       with:
+  #         job-status: ${{ needs.build.result }}
+  #         pushover-api-token: ${{ secrets.PUSHOVER_API_TOKEN }}
+  #         pushover-user-key: ${{ secrets.PUSHOVER_USER_KEY }}
